@@ -28,6 +28,11 @@ public class BooksTab extends Tab {
 	BooksTab(JPanel tab){
 		
 		lineBox.add(add);
+		add.addActionListener(new ActionListener () {
+			public void actionPerformed(ActionEvent e){
+				AddBook addb = new AddBook();
+			}
+		});
 	    lineBox.add(edit);
 	    tab.add(lineBox, BorderLayout.NORTH);
 	    
@@ -77,9 +82,9 @@ public class BooksTab extends Tab {
 		         id = rs.getInt("id");
 		         title = rs.getString("title");
 		         author  = rs.getString("author");
+		         year = rs.getInt("year");
 		         quantity = rs.getInt("quantity");
 		         available = rs.getInt("available");
-		         year = rs.getInt("year");
 		         Object[] bookInfo = new Object[]{
 							id,
 							title,
@@ -93,7 +98,7 @@ public class BooksTab extends Tab {
 		         
 		      }
 		      rs.close();
-	   
+		      
 		      stmt.close();
 		      c.close();
 		    } catch ( Exception e ) {
