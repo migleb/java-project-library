@@ -31,12 +31,12 @@ public class BooksTab extends Tab {
 		add.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e){
 				AddBook addb = new AddBook();
+				printFiles();
 			}
 		});
 	    lineBox.add(edit);
 	    tab.add(lineBox, BorderLayout.NORTH);
 	    
-	    // PRIDETI YEAR!!!!!
 	    String[] columnNames = {"ID", "Title", "Author", "Year", "Quantity", "Available"};
 	    this.table = new BooksTableModel(columnNames, 0);
 		JTable dataTable = new JTable(this.table);
