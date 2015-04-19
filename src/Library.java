@@ -11,7 +11,49 @@ public class Library {
 	
 	public static void main (String[] args) {
 		Library library = new Library();
-		Scanner s = new Scanner(System.in);
+		MainWindow mainWindow = new MainWindow();
+		/*
+		Connection c = null;
+	    Statement stmt = null;
+	    try {
+	 
+	      
+	      Class.forName("org.sqlite.JDBC");
+	      c = DriverManager.getConnection("jdbc:sqlite:test.db");
+	      c.setAutoCommit(false);
+	      System.out.println("Opened database successfully");
+	      stmt = c.createStatement();
+	      String sql = "INSERT INTO LIBRARY (ID,TITLE,AUTHOR,QUANTITY,AVAILABLE) " +
+	                   "VALUES (6, 'Knyga6', 'Autorius6', 7, 7 );"; 
+	      stmt.executeUpdate(sql);
+	      /*stmt = c.createStatement();
+	      
+	      ResultSet rs = stmt.executeQuery( "SELECT * FROM LIBRARY;" );
+	      while ( rs.next() ) {
+	         int id = rs.getInt("id");
+	         String  title = rs.getString("title");
+	         String author  = rs.getString("author");
+	         int quantity = rs.getInt("quantity");
+	         int available = rs.getInt("available");
+	         System.out.println( "ID = " + id );
+	         System.out.println( "TITLE = " + title );
+	         System.out.println( "AUTHOR = " + author );
+	         System.out.println( "QUANTITY = " + quantity );
+	         System.out.println( "AVAILABLE = " + available );
+	         System.out.println();
+	      }
+	      rs.close();
+     
+	      stmt.close();
+	      c.commit();
+	      c.close();
+	    } catch ( Exception e ) {
+	      System.err.println( e.getClass().getName() + ": " + e.getMessage() );
+	      System.exit(0);
+	    }*/
+	    /*System.out.println("Operation done successfully");
+	    
+		/*Scanner s = new Scanner(System.in);
 		try {
 			System.out.println("Enter new book catalog name: ");
 			String temp = s.nextLine();
@@ -62,7 +104,7 @@ public class Library {
 			
 		} finally {
 			s.close();
-		}
+		}*/
 	}
 	
 	
