@@ -71,9 +71,9 @@ public class BookCatalog {
 		BookCatalog.totalBooksQuantity = totalBooksQuantity;
 	}
 	
-	//println
-	public void println(){
-		System.out.println(this.getCatalogName() + " " + this.getTotalBooksQuantityInCatalog() + " " + BookCatalog.getTotalBooksQuantity());
+	@Override
+	public String toString(){
+		return this.getCatalogName() + " " + this.getTotalBooksQuantityInCatalog() + " " + BookCatalog.getTotalBooksQuantity();
 	}
 	
 }
