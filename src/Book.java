@@ -2,6 +2,7 @@
 public class Book {
 	
 	private int quantity;
+	private int id;
 	private String title;
 	private String author = "unknown";
 	private String year;
@@ -62,6 +63,14 @@ public class Book {
 	
 	public void println(){
 		System.out.println(this.getTitle() + " " + this.getAuthor() + " " + this.getYear() + " " + this.getQuantity());
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
