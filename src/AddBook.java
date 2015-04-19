@@ -45,8 +45,8 @@ public class AddBook extends JPanel{
 	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	        if (result == JOptionPane.OK_OPTION) {
 	        	String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
-	                    "VALUES (" + title.getText() + ", " + 
-	        			author.getText() + ", " + 
+	                    "VALUES ( '" + title.getText() + "' , '" + 
+	        			author.getText() + "', " + 
 	                    year.getText() + ", " + 
 	        			quantity.getText() + ", " + 
 	                    quantity.getText() + " );"; 
