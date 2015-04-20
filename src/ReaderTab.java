@@ -21,6 +21,24 @@ public class ReaderTab extends Tab {
 	String currentPath = ".";
 	
 	ReaderTab(JPanel tab){
+		try {
+			Class.forName("org.sqlite.JDBC");
+		    c = DriverManager.getConnection("jdbc:sqlite:test.db");
+
+		    stmt = c.createStatement();
+			String sql = "CREATE TABLE IF NOT EXISTS READER " +
+	                "(ID INTEGER PRIMARY KEY     AUTOINCREMENT," +
+	                " NAME           TEXT    NOT NULL, " + 
+	                " SURNAME            TEXT     NOT NULL, " + 
+	                " ADDRESS        INT  			NOT NULL, " +
+	                " BOOKSTAKEN         INT		NOT NULL)"; 
+			stmt.executeUpdate(sql);
+		} catch (Exception e) {
+				e.printStackTrace();
+		}
+		finally {
+				
+		}
 		lineBox.add(add);
 		add.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e){
