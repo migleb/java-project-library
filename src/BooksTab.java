@@ -1,29 +1,25 @@
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-class BooksTableModel extends DefaultTableModel{
-	
-	public BooksTableModel(String[] columnNames, int i){
-		super(columnNames, i);
-	}
-	
-	@Override
-	public boolean isCellEditable(int row, int column) {                
-		return false;
-	};
-}
+
 
 public class BooksTab extends Tab {
 	
-	  DefaultTableModel table;
-	  ArrayList<Object[]> booksList;
-	  String currentPath = ".";
+	DefaultTableModel table;
+	ArrayList<Object[]> booksList;
+	String currentPath = ".";
 	
 	BooksTab(JPanel tab){
 		
@@ -47,19 +43,19 @@ public class BooksTab extends Tab {
 					JTable target = (JTable)e.getSource();
 					int row = target.getSelectedRow();
 					
-					analyzeRow(row);
 				}
 			}
 		});
 		
-	printFiles();
+		printFiles();
+		
+		JScrollPane scrollPane = new JScrollPane(dataTable);
+		tab.add(scrollPane);
 	
-	JScrollPane scrollPane = new JScrollPane(dataTable);
-	tab.add(scrollPane);
-	
-}
+	}
 
   public void printFiles(){
+	  
 		this.table.setRowCount(0);
 		booksList = new ArrayList<Object[]>();
 		
@@ -116,7 +112,4 @@ public class BooksTab extends Tab {
 		}*/
 	  }
 	  
-	  public void analyzeRow(int num){
-		  
-	  }
 }
