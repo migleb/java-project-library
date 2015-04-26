@@ -1,3 +1,4 @@
+package com.mif.mibu1254.models;
 
 public class Staff {
 	private String name;

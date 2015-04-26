@@ -1,4 +1,7 @@
+package com.mif.mibu1254.views;
 import java.util.ArrayList;
+
+import com.mif.mibu1254.models.Book;
 
 
 public class BookCatalog {

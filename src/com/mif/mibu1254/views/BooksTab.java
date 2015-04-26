@@ -1,3 +1,4 @@
+package com.mif.mibu1254.views;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,8 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+
+import com.mif.mibu1254.models.Book;
 
 
 

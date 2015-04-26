@@ -1,3 +1,4 @@
+package com.mif.mibu1254.views;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;

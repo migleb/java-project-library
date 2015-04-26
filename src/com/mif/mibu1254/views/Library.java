@@ -1,3 +1,4 @@
+package com.mif.mibu1254.views;
 /*
  * Author: Miglë Buèelytë
  */

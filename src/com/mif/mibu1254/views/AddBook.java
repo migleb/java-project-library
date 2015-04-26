@@ -1,3 +1,4 @@
+package com.mif.mibu1254.views;
 import java.awt.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -8,6 +9,8 @@ import java.util.*;
 import java.sql.DriverManager;
 
 import javax.swing.*;
+
+import com.mif.mibu1254.models.Book;
 
 
 public class AddBook extends JPanel{
