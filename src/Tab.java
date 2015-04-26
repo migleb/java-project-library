@@ -18,7 +18,7 @@ class BooksTableModel extends DefaultTableModel{
 	};
 }
 
-public class Tab {
+public abstract class Tab implements PrintableTable {
     Connection c = null;
     Statement stmt = null;
 	Box lineBox = new Box(BoxLayout.LINE_AXIS);

@@ -6,6 +6,7 @@ public class Book {
 	private String title;
 	private String author = "unknown";
 	private String year;
+	private int available;
 /*	
 	public Book(String title, String year) {
 		this(title,year,0);
@@ -16,16 +17,17 @@ public class Book {
 		this.year = year;
 		this.quantity = quantity;
 	}
-*/	
+	
 	public Book(String title, String author, String year){
 		this(title,author,year,0);
 	}
-	
-	public Book(String title, String author, String year, int quantity) {
+*/	
+	public Book(String title, String author, String year, int quantity, int available) {
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.quantity = quantity;
+		this.available = available;
 	}
 	
 	

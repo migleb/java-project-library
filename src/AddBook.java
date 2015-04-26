@@ -12,15 +12,21 @@ import javax.swing.*;
 
 public class AddBook extends JPanel{
 	
-	AddBook() {
-		Connection c = null;
-	    Statement stmt = null;
-		try {
-			Class.forName("org.sqlite.JDBC");
-		    c = DriverManager.getConnection("jdbc:sqlite:test.db");
-		    c.setAutoCommit(false);
+	private SaveListener listener;
 	
-		    stmt = c.createStatement();
+	public void setSaveListener(SaveListener listener){
+		this.listener = listener;
+	}
+	
+	AddBook() {
+		//Connection c = null;
+	    //Statement stmt = null;
+	//	try {
+		//	Class.forName("org.sqlite.JDBC");
+		//    c = DriverManager.getConnection("jdbc:sqlite:test.db");
+		//    c.setAutoCommit(false);
+	
+		//    stmt = c.createStatement();
 	        JTextField title = new JTextField();
 	        JTextField author = new JTextField();
 	        JTextField year = new JTextField();
@@ -44,27 +50,26 @@ public class AddBook extends JPanel{
 	        int result = JOptionPane.showConfirmDialog(null, panel, "Add book",
 	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
 	        if (result == JOptionPane.OK_OPTION) {
-	        	String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
-	                    "VALUES ( '" + title.getText() + "' , '" + 
-	        			author.getText() + "', " + 
-	                    year.getText() + ", " + 
-	        			quantity.getText() + ", " + 
-	                    quantity.getText() + " );"; 
-	        	stmt.executeUpdate(sql);
-	        	c.commit();
+	        	if (this.listener != null){
+	        		Book book = new Book(title.getText(),author.getText(),year.getText(),Integer.getInteger(quantity.getText()),Integer.getInteger(quantity.getText()));
+	        		this.listener.save(book);
+	        	}
+	        	
+//	        	stmt.executeUpdate(sql);
+//	        	c.commit();
 	        } else {
 	            System.out.println("Cancelled");
 	        }
-	        stmt.close();
-	        c.commit();
-		    c.close();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			
-		}
+//	        stmt.close();
+//	        c.commit();
+//		    c.close();
+//		} catch (ClassNotFoundException e) {
+//			e.printStackTrace();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			
+//		}
 	}
 
 }

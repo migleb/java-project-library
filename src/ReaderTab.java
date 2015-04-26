@@ -67,7 +67,7 @@ public class ReaderTab extends Tab {
 		tab.add(scrollPane);
 	}
 	
-	private void printFiles() {
+	public void printFiles() {
 		
 		this.table.setRowCount(0);
 		booksList = new ArrayList<Object[]>();
