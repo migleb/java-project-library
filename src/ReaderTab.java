@@ -39,11 +39,6 @@ public class ReaderTab extends Tab {
 		finally {
 				
 		}
-		add.addActionListener(new ActionListener () {
-			public void actionPerformed(ActionEvent e){
-				printFiles();
-			}
-		});
 	}
 	
 	@Override
@@ -97,6 +92,11 @@ public class ReaderTab extends Tab {
 	    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
 	    	System.exit(0);
 	    }
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e){
+		printFiles();
 	}
 
 }

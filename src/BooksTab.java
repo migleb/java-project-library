@@ -41,33 +41,6 @@ public class BooksTab extends Tab {
 		finally {
 			
 		}
-		
-		
-		add.addActionListener(new ActionListener () {
-			public void actionPerformed(ActionEvent e){
-				AddBook addb = new AddBook();
-				addb.setSaveListener(new SaveListener() {
-					
-					@Override
-					public void save(Book book) {
-						try {
-						String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
-			                    "VALUES ( '" + book.getTitle() + "' , '" + 
-			        			book.getAuthor() + "', " + 
-			                    book.getYear() + ", " + 
-			        			book.getQuantity() + ", " + 
-			                    book.getQuantity() + " );"; 
-						stmt.executeUpdate(sql);
-						c.commit();
-						} catch (Exception e){
-							
-						}
-						
-					}
-				});
-				printFiles();
-			}
-		});
 	}
 	
 	@Override
@@ -132,5 +105,28 @@ public class BooksTab extends Tab {
 			
 		}*/
 	  }
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		AddBook addb = new AddBook();
+		addb.show(new SaveListener() {
+			
+			@Override
+			public void save(Book book) {
+				try {
+					String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
+		                    "VALUES ( '" + book.getTitle() + "' , '" + 
+		        			book.getAuthor() + "', " + 
+		                    book.getYear() + ", " + 
+		        			book.getQuantity() + ", " + 
+		                    book.getQuantity() + " );"; 
+					stmt.executeUpdate(sql);
+				} catch (Exception e){
+					e.printStackTrace();
+				}
+				printFiles();
+			}
+		});
+	}
 	  
 }

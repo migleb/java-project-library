@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
@@ -24,7 +25,7 @@ class BooksTableModel extends DefaultTableModel{
 	};
 }
 
-public abstract class Tab implements PrintableTable {
+public abstract class Tab implements PrintableTable, ActionListener {
     Connection c = null;
     Statement stmt = null;
 	Box lineBox = new Box(BoxLayout.LINE_AXIS);
@@ -37,9 +38,15 @@ public abstract class Tab implements PrintableTable {
     Tab(JPanel tab){
     	lineBox.add(add);
     	lineBox.add(edit);
-	    tab.add(lineBox, BorderLayout.NORTH);
+	    add.addActionListener(this);
 	    
-	    this.table = new BooksTableModel(columnNames(), 0);
+	    this.initTable(tab);
+    }
+    
+    final void initTable(JPanel tab){
+    	tab.add(lineBox, BorderLayout.NORTH);
+    	
+    	this.table = new BooksTableModel(columnNames(), 0);
 		JTable dataTable = new JTable(this.table);
 		
 		dataTable.addMouseListener(new MouseAdapter(){
