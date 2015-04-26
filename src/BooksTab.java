@@ -17,11 +17,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class BooksTab extends Tab {
 	
-	DefaultTableModel table;
 	ArrayList<Object[]> booksList;
 	String currentPath = ".";
 	
 	BooksTab(JPanel tab){
+		super(tab);
 		try {
 		Class.forName("org.sqlite.JDBC");
 	    c = DriverManager.getConnection("jdbc:sqlite:test.db");
@@ -41,7 +41,7 @@ public class BooksTab extends Tab {
 		finally {
 			
 		}
-		lineBox.add(add);
+		
 		
 		add.addActionListener(new ActionListener () {
 			public void actionPerformed(ActionEvent e){
@@ -68,29 +68,11 @@ public class BooksTab extends Tab {
 				printFiles();
 			}
 		});
-		
-	    lineBox.add(edit);
-	    tab.add(lineBox, BorderLayout.NORTH);
-	    
-	    String[] columnNames = {"ID", "Title", "Author", "Year", "Quantity", "Available"};
-	    this.table = new BooksTableModel(columnNames, 0);
-		JTable dataTable = new JTable(this.table);
-		
-		dataTable.addMouseListener(new MouseAdapter(){
-			public void mouseClicked(MouseEvent e){
-				if (e.getClickCount() == 2){
-					JTable target = (JTable)e.getSource();
-					int row = target.getSelectedRow();
-					
-				}
-			}
-		});
-		
-		printFiles();
-		
-		JScrollPane scrollPane = new JScrollPane(dataTable);
-		tab.add(scrollPane);
+	}
 	
+	@Override
+	public String[] columnNames() {
+		return new String[]{"ID", "Title", "Author", "Year", "Quantity", "Available"};
 	}
 
   public void printFiles(){
