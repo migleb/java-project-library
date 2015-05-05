@@ -45,8 +45,11 @@ public class AddBook extends JPanel{
 	            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
         	if (listener != null){
+        		try{
         		Book book = new Book(title.getText(),author.getText(),year.getText(),Integer.parseInt(quantity.getText()),Integer.parseInt(quantity.getText()));
         		listener.save(book);
+        		} catch (WrongYearException e){
+        		}
         	}
         } else {
             System.out.println("Cancelled");
