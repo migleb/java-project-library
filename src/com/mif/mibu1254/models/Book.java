@@ -1,5 +1,10 @@
 package com.mif.mibu1254.models;
 
+import java.util.Calendar;
+
+import com.mif.mibu1254.views.WrongYearException;
+
+
 public class Book {
 	
 	private int quantity;
@@ -23,10 +28,14 @@ public class Book {
 		this(title,author,year,0);
 	}
 */	
-	public Book(String title, String author, String year, int quantity, int available) {
+	public Book(String title, String author, String year, int quantity, int available) throws WrongYearException {
 		this.title = title;
 		this.author = author;
-		this.year = year;
+		if (Integer.parseInt(year) < Calendar.getInstance().get(Calendar.YEAR)){
+			this.year = year;
+		} else {
+			throw new WrongYearException();
+		}
 		this.quantity = quantity;
 		this.available = available;
 	}
