@@ -4,6 +4,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.Box;
@@ -36,7 +37,7 @@ public abstract class Tab implements PrintableTable, ActionListener {
     
     DefaultTableModel table;
     
-    Tab(JPanel tab){
+    Tab(JPanel tab) throws ClassNotFoundException, SQLException{
     	lineBox.add(add);
     	lineBox.add(edit);
 	    add.addActionListener(this);
@@ -44,7 +45,7 @@ public abstract class Tab implements PrintableTable, ActionListener {
 	    this.initTable(tab);
     }
     
-    final void initTable(JPanel tab){
+    final void initTable(JPanel tab) throws ClassNotFoundException, SQLException{
     	tab.add(lineBox, BorderLayout.NORTH);
     	
     	this.table = new BooksTableModel(columnNames(), 0);

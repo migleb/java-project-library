@@ -1,5 +1,6 @@
 package com.mif.mibu1254.views;
 import java.awt.*;
+import java.sql.SQLException;
 
 import javax.swing.*; 
 import javax.swing.table.DefaultTableModel;
@@ -13,7 +14,7 @@ public class MainWindow extends JFrame
   JPanel pane = new JPanel();
 
   
-  MainWindow() // the frame constructor method
+  MainWindow() throws ClassNotFoundException, SQLException // the frame constructor method
   {
     super("Library"); 
     setBounds(350,100,600,600);

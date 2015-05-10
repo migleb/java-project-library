@@ -3,6 +3,7 @@ package com.mif.mibu1254.views;
  * Author: Miglë Buèelytë
  */
 
+import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -12,7 +13,15 @@ public class Library {
 	
 	public static void main (String[] args) {
 		Library library = new Library();
-		MainWindow mainWindow = new MainWindow();
+		try {
+			MainWindow mainWindow = new MainWindow();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*
 		Connection c = null;
 	    Statement stmt = null;

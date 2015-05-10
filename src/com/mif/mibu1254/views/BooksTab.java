@@ -23,7 +23,7 @@ public class BooksTab extends Tab {
 	ArrayList<Object[]> booksList;
 	String currentPath = ".";
 	
-	BooksTab(JPanel tab){
+	BooksTab(JPanel tab) throws ClassNotFoundException, SQLException{
 		super(tab);
 		try {
 		Class.forName("org.sqlite.JDBC");
@@ -51,7 +51,7 @@ public class BooksTab extends Tab {
 		return new String[]{"ID", "Title", "Author", "Year", "Quantity", "Available"};
 	}
 
-  public void printFiles(){
+  public void printFiles() throws SQLException, ClassNotFoundException{
 	  
 		this.table.setRowCount(0);
 		booksList = new ArrayList<Object[]>();
@@ -63,7 +63,7 @@ public class BooksTab extends Tab {
 		int available;
 		int year;
 		
-		try {
+		
 		      Class.forName("org.sqlite.JDBC");
 		      c = DriverManager.getConnection("jdbc:sqlite:test.db");
 		      c.setAutoCommit(false);
@@ -94,10 +94,6 @@ public class BooksTab extends Tab {
 		      
 		      stmt.close();
 		      c.close();
-		    } catch ( Exception e ) {
-		    	System.err.println( e.getClass().getName() + ": " + e.getMessage() );
-		    	System.exit(0);
-		    }
 		
 		/*try {
 			this.currentPath = folder.getCanonicalPath();
@@ -112,24 +108,35 @@ public class BooksTab extends Tab {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		AddBook addb = new AddBook();
-		addb.show(new SaveListener() {
-			
-			@Override
-			public void save(Book book) {
-				try {
-					String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
-		                    "VALUES ( '" + book.getTitle() + "' , '" + 
-		        			book.getAuthor() + "', " + 
-		                    book.getYear() + ", " + 
-		        			book.getQuantity() + ", " + 
-		                    book.getQuantity() + " );"; 
-					stmt.executeUpdate(sql);
-				} catch (Exception e){
-					e.printStackTrace();
+		try {
+			addb.show(new SaveListener() {
+				
+				@Override
+				public void save(Book book) throws ClassNotFoundException, SQLException {
+					try {
+						String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
+			                    "VALUES ( '" + book.getTitle() + "' , '" + 
+			        			book.getAuthor() + "', " + 
+			                    book.getYear() + ", " + 
+			        			book.getQuantity() + ", " + 
+			                    book.getQuantity() + " );"; 
+						stmt.executeUpdate(sql);
+					} catch (Exception e){
+						e.printStackTrace();
+					}
+					printFiles();
 				}
-				printFiles();
-			}
-		});
+			});
+		} catch (WrongYearException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	  
 }
