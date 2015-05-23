@@ -15,11 +15,11 @@ import com.mif.mibu1254.models.Book;
 
 public class AddBook extends JPanel{
 	
-	final JTextField title = new JTextField();
-    final JTextField author = new JTextField();
-    final JFormattedTextField year;
-    final JTextField quantity;
-    final JPanel panel;
+	private final JTextField title = new JTextField();
+	private final JTextField author = new JTextField();
+	private final JFormattedTextField year;
+	private final JTextField quantity;
+	private final JPanel panel;
 	
 	AddBook() {
         NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.getDefault());

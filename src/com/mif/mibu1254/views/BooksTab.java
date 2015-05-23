@@ -20,10 +20,10 @@ import com.mif.mibu1254.models.Book;
 
 public class BooksTab extends Tab {
 	
-	ArrayList<Object[]> booksList;
+	private ArrayList<Object[]> booksList;
 	String currentPath = ".";
 	
-	BooksTab(JPanel tab) throws ClassNotFoundException, SQLException{
+	BooksTab(JPanel tab) throws ClassNotFoundException, SQLException, WrongYearException{
 		super(tab);
 		try {
 		Class.forName("org.sqlite.JDBC");
@@ -38,6 +38,7 @@ public class BooksTab extends Tab {
                 " QUANTITY     INT 		  	NOT NULL, " + 
                 " AVAILABLE         INT		NOT NULL)"; 
 		stmt.executeUpdate(sql);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -51,10 +52,12 @@ public class BooksTab extends Tab {
 		return new String[]{"ID", "Title", "Author", "Year", "Quantity", "Available"};
 	}
 
-  public void printFiles() throws SQLException, ClassNotFoundException{
+  public void printFiles() throws SQLException, ClassNotFoundException, WrongYearException{
 	  
 		this.table.setRowCount(0);
 		booksList = new ArrayList<Object[]>();
+
+		BookCatalog bc = new BookCatalog("My Catalog");
 		
 		int id;
 		String title;
@@ -70,6 +73,8 @@ public class BooksTab extends Tab {
 
 		      stmt = c.createStatement();
 		      
+		      
+		      
 		      ResultSet rs = stmt.executeQuery( "SELECT * FROM LIBRARY;" );
 		      while ( rs.next() ) {
 		         id = rs.getInt("id");
@@ -78,19 +83,49 @@ public class BooksTab extends Tab {
 		         year = rs.getInt("year");
 		         quantity = rs.getInt("quantity");
 		         available = rs.getInt("available");
-		         Object[] bookInfo = new Object[]{
+		         Book book = new Book(
 							id,
 							title,
 							author,
-							year,
+							String.valueOf(year),
 							quantity,
 							available
-						};
-		         this.table.addRow(bookInfo);
-		         this.booksList.add(bookInfo);
+						);
+		         bc.books.add(book);
 		         
 		      }
 		      rs.close();
+		      for ( Book book : bc.books  ) {
+		    	 Object[] ob = new Object[] { 
+		    			 book.getId(),
+		    			 book.getTitle(),
+		    			 book.getAuthor(),
+		    			 book.getYear(),
+		    			 book.getQuantity(),
+		    			 book.getAvailable()
+		    	 };
+		         this.table.addRow(ob);
+		         this.booksList.add(ob);
+		         
+		      }
+		      
+		      Book b = new Book(0,"","","1999",0,0);
+		      BookCatalog newbc = bc.clone();
+		      newbc.books.set(0, b);
+		      
+		      for ( Book book : newbc.books  ) {
+			    	 Object[] ob = new Object[] { 
+			    			 book.getId(),
+			    			 book.getTitle(),
+			    			 book.getAuthor(),
+			    			 book.getYear(),
+			    			 book.getQuantity(),
+			    			 book.getAvailable()
+			    	 };
+			         this.table.addRow(ob);
+			         this.booksList.add(ob);
+			         
+			  }
 		      
 		      stmt.close();
 		      c.close();
@@ -112,7 +147,7 @@ public class BooksTab extends Tab {
 			addb.show(new SaveListener() {
 				
 				@Override
-				public void save(Book book) throws ClassNotFoundException, SQLException {
+				public void save(Book book) throws ClassNotFoundException, SQLException, WrongYearException {
 					try {
 						String sql = "INSERT INTO LIBRARY (TITLE,AUTHOR,YEAR,QUANTITY,AVAILABLE) " +
 			                    "VALUES ( '" + book.getTitle() + "' , '" + 
@@ -128,13 +163,10 @@ public class BooksTab extends Tab {
 				}
 			});
 		} catch (WrongYearException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 	}
