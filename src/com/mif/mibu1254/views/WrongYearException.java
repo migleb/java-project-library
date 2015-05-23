@@ -5,4 +5,8 @@ public class WrongYearException extends ProjectException{
 	public WrongYearException(){		
 		super("Invalid year");
 	}
+	
+	public WrongYearException(String message){
+		super(message);
+	}
 }

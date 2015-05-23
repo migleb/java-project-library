@@ -20,7 +20,7 @@ public class ReaderTab extends Tab {
 	ArrayList<Object[]> booksList;
 	String currentPath = ".";
 	
-	ReaderTab(JPanel tab) throws ClassNotFoundException, SQLException{
+	ReaderTab(JPanel tab) throws ClassNotFoundException, SQLException, WrongYearException{
 		super(tab);
 		try {
 			Class.forName("org.sqlite.JDBC");

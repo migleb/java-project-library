@@ -37,7 +37,7 @@ public abstract class Tab implements PrintableTable, ActionListener {
     
     DefaultTableModel table;
     
-    Tab(JPanel tab) throws ClassNotFoundException, SQLException{
+    Tab(JPanel tab) throws ClassNotFoundException, SQLException, WrongYearException{
     	lineBox.add(add);
     	lineBox.add(edit);
 	    add.addActionListener(this);
@@ -45,7 +45,7 @@ public abstract class Tab implements PrintableTable, ActionListener {
 	    this.initTable(tab);
     }
     
-    final void initTable(JPanel tab) throws ClassNotFoundException, SQLException{
+    final void initTable(JPanel tab) throws ClassNotFoundException, SQLException, WrongYearException{
     	tab.add(lineBox, BorderLayout.NORTH);
     	
     	this.table = new BooksTableModel(columnNames(), 0);

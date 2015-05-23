@@ -15,6 +15,7 @@ public class MainWindow extends JFrame
 
   
   MainWindow() throws ClassNotFoundException, SQLException // the frame constructor method
+, WrongYearException
   {
     super("Library"); 
     setBounds(350,100,600,600);
