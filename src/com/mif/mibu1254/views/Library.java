@@ -21,6 +21,9 @@ public class Library {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println("An error occured");
+			e.printStackTrace();
 		}
 		/*
 		Connection c = null;

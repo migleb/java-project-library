@@ -1,2 +1,5 @@
 bin
 *.db
+*.ucls
+*.png
+*.html
