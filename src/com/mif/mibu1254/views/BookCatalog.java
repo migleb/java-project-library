@@ -9,7 +9,7 @@ public class BookCatalog {
 	private String catalogName;
 	private int totalBooksQuantityInCatalog = 0;
 	private static int totalBooksQuantity = 0;
-	private ArrayList<Book> books = new ArrayList<Book>();
+	public ArrayList<Book> books = new ArrayList<Book>();
 	
 	public BookCatalog(String catalogName){
 		this.catalogName = catalogName;
@@ -21,6 +21,21 @@ public class BookCatalog {
 			totalBooksQuantityInCatalog += book.getQuantity();
 			totalBooksQuantity += book.getQuantity();
 		}
+	}
+	
+	public BookCatalog clone() {
+		BookCatalog bc = new BookCatalog("newCatalog");
+		bc.catalogName = catalogName + "new";
+		bc.totalBooksQuantityInCatalog = totalBooksQuantityInCatalog;
+		bc.totalBooksQuantity = totalBooksQuantity;
+		bc.books = cloneList(books);
+		return bc;
+	}
+	
+	public static ArrayList<Book> cloneList(ArrayList<Book> bk) {
+		ArrayList<Book> clone = new ArrayList<Book>(bk.size());
+		for (Book item: bk) clone.add(item.clone());
+		return clone;
 	}
 	
 	public boolean isFull(){
