@@ -1,5 +1,11 @@
 package com.mif.mibu1254.models;
 
+/**
+ * Reader class
+ * 
+ * @author Miglë
+ *
+ */
 public class Reader {
 	private String name;
 	private String surname;

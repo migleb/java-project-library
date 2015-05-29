@@ -12,7 +12,12 @@ import javax.swing.*;
 
 import com.mif.mibu1254.models.Book;
 
-
+/**
+ * For adding books when the button is clicked
+ * 
+ * @author Miglë
+ *
+ */
 public class AddBook extends JPanel{
 	
 	private final JTextField title = new JTextField();

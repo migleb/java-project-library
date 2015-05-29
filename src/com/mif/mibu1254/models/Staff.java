@@ -1,5 +1,11 @@
 package com.mif.mibu1254.models;
 
+/**
+ * Staff class
+ * 
+ * @author Miglë
+ *
+ */
 public class Staff {
 	private String name;
 	private String surname;

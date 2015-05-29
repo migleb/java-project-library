@@ -8,6 +8,12 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * Main class to run the project
+ * 
+ * @author Miglë
+ *
+ */
 
 public class Library {
 	

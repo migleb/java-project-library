@@ -17,10 +17,16 @@ import javax.swing.table.DefaultTableModel;
 import com.mif.mibu1254.models.Book;
 
 
-
+/**
+ * Tab of the books
+ * 
+ * @author Miglë
+ *
+ */
 public class BooksTab extends Tab {
 	
 	private ArrayList<Object[]> booksList;
+	
 	String currentPath = ".";
 	
 	BooksTab(JPanel tab) throws ClassNotFoundException, SQLException, WrongYearException{
@@ -45,7 +51,11 @@ public class BooksTab extends Tab {
 		finally {
 			
 		}
+		
+		
 	}
+	
+	
 	
 	@Override
 	public String[] columnNames() {
@@ -109,26 +119,17 @@ public class BooksTab extends Tab {
 		         
 		      }
 		      
-		      Book b = new Book(0,"","","1999",0,0);
-		      BookCatalog newbc = bc.clone();
-		      newbc.books.set(0, b);
-		      
-		      for ( Book book : newbc.books  ) {
-			    	 Object[] ob = new Object[] { 
-			    			 book.getId(),
-			    			 book.getTitle(),
-			    			 book.getAuthor(),
-			    			 book.getYear(),
-			    			 book.getQuantity(),
-			    			 book.getAvailable()
-			    	 };
-			         this.table.addRow(ob);
-			         this.booksList.add(ob);
-			         
-			  }
-		      
 		      stmt.close();
 		      c.close();
+		      
+		      export.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ExportBook exp = new ExportBook(bc.books);
+					}
+					
+				});
 		
 		/*try {
 			this.currentPath = folder.getCanonicalPath();

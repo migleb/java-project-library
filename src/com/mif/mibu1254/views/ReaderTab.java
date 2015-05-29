@@ -14,7 +14,12 @@ import java.util.ArrayList;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * Tab of the readers
+ * 
+ * @author Miglë
+ *
+ */
 public class ReaderTab extends Tab {
 	
 	ArrayList<Object[]> booksList;

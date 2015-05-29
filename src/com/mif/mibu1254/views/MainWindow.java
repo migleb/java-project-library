@@ -5,7 +5,12 @@ import java.sql.SQLException;
 import javax.swing.*; 
 import javax.swing.table.DefaultTableModel;
 
-
+/**
+ * Main window of the whole GUI
+ * 
+ * @author Miglë
+ *
+ */
 
 
 
