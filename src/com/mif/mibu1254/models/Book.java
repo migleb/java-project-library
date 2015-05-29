@@ -5,8 +5,14 @@ import java.util.Calendar;
 import com.mif.mibu1254.views.Literature;
 import com.mif.mibu1254.views.WrongYearException;
 
+/**
+ * For books initializing
+ * 
+ * @author Miglë
+ *
+ */
 
-public class Book{
+public class Book implements java.io.Serializable{
 	
 	private int quantity;
 	private int id;
