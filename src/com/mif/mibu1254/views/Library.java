@@ -7,6 +7,7 @@ import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Main class to run the project
@@ -20,6 +21,22 @@ public class Library {
 	public static void main (String[] args) {
 		Library library = new Library();
 		try {
+			new Thread(new Runnable() {
+				public void run() {
+					while (true) {
+						Set<Thread> threadSet = Thread.getAllStackTraces().keySet();
+						for (Thread thread : threadSet) {
+							System.out.println(thread);
+						}
+						System.out.println("-----------------");
+						try {
+							Thread.sleep(10000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}).start();
 			MainWindow mainWindow = new MainWindow();
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block

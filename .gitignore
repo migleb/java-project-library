@@ -3,3 +3,5 @@ bin
 *.ucls
 *.png
 *.html
+doc/
+*.bin

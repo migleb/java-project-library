@@ -1,6 +1,7 @@
 package com.mif.mibu1254.views;
 import java.awt.*;
 import java.sql.SQLException;
+import java.util.Set;
 
 import javax.swing.*; 
 import javax.swing.table.DefaultTableModel;
@@ -43,7 +44,7 @@ public class MainWindow extends JFrame
     tabs.addTab("<html><body leftmargin=50 topmargin=8 marginwidth=20 marginheight=5>Staff</body></html>", tab3);
     Tab booksTab = new BooksTab(tab1);
     Tab readerTab = new ReaderTab(tab2);
-
+    
     setVisible(true); 
   }
   
