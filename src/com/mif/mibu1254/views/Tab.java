@@ -17,6 +17,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mif.mibu1254.models.Book;
+
 class BooksTableModel extends DefaultTableModel{
 	
 	public BooksTableModel(String[] columnNames, int i){
@@ -39,10 +41,12 @@ class BooksTableModel extends DefaultTableModel{
 public abstract class Tab implements PrintableTable, ActionListener {
     Connection c = null;
     Statement stmt = null;
+    BookCatalog bc = new BookCatalog("pav");
 	Box lineBox = Box.createHorizontalBox();//new Box(BoxLayout.LINE_AXIS);
 	JButton add = new JButton("Add");
     JButton edit = new JButton("Edit");
     final protected JButton export = new JButton("Export");
+    JButton importing = new JButton("Import");
     
     DefaultTableModel table;
     
@@ -51,6 +55,7 @@ public abstract class Tab implements PrintableTable, ActionListener {
     	lineBox.add(edit);
     	lineBox.add(Box.createHorizontalGlue());
     	lineBox.add(export);
+    	lineBox.add(importing);
 	    add.addActionListener(this);
 	    
 	    this.initTable(tab);

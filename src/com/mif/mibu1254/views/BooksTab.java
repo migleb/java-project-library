@@ -26,7 +26,7 @@ import com.mif.mibu1254.models.Book;
 public class BooksTab extends Tab {
 	
 	private ArrayList<Object[]> booksList;
-	
+	int a = 0;
 	String currentPath = ".";
 	
 	BooksTab(JPanel tab) throws ClassNotFoundException, SQLException, WrongYearException{
@@ -130,7 +130,32 @@ public class BooksTab extends Tab {
 					}
 					
 				});
-		
+		      
+				importing.addActionListener(new ActionListener() {
+					
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						ImportBook imp = new ImportBook();
+						bc.books = imp.getList();
+						int rows = table.getRowCount();
+						for (int i = rows; i > 0; i--){
+							table.removeRow(i-1);
+						}
+						for ( Book book : bc.books  ) {
+					    	 Object[] ob = new Object[] { 
+					    			 book.getId(),
+					    			 book.getTitle(),
+					    			 book.getAuthor(),
+					    			 book.getYear(),
+					    			 book.getQuantity(),
+					    			 book.getAvailable()
+					    	 };
+					         table.addRow(ob);
+					    }
+					}
+			      });
+		      
+		     
 		/*try {
 			this.currentPath = folder.getCanonicalPath();
 			System.out.println(this.currentPath);
@@ -140,6 +165,8 @@ public class BooksTab extends Tab {
 			
 		}*/
 	  }
+  		
+  		
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
